@@ -7,61 +7,133 @@
     <title>متجر الإلكتروني للمنوعات</title>
 </head>
 <body>
+    <!DOCTYPE html>
+    <html lang="ar" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>متجر الإلكتروني للمنوعات</title>
+        <style>
+            /* تنسيق سريع لنافذة السلة المنبثقة */
+            .cart-modal {
+                display: none; /* مخفية في البداية */
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
 
-    <header>
-        <div style="float: left; font-size: 20px;">🛒 السلة: <span id="cart-count">0</span></div>
-        <div style="clear: both;"></div>
-        <h1>مرحباً بك في متجرنا الرقمي</h1>
-        <p>بوابتك للحصول على الكتب، الأجهزة، وحسابات الألعاب</p>
-    </header>
+            .cart-content {
+                background: white;
+                width: 90%;
+                max-width: 500px;
+                margin: 50px auto;
+                padding: 20px;
+                border-radius: 12px;
+                text-align: right;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
 
-    <main>
-        <section class="category-section">
-            <h2>🎮 حسابات ألعاب (تسليم تلقائي)</h2>
-            <div class="product-card">
-                <a href="product-clash.html" style="text-decoration: none; color: inherit;">
-                    <img src="file:///C:/Users/PC/Desktop/html/game-account1.png.png" alt="حساب كلاش">
-                    <h3>حساب كلاش اوف كلانس لفل عالي</h3>
-                </a>
-                <p class="price">السعر: 18,000 دينار</p>
-                <button>شراء الآن</button>
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #e2e8f0;
+                padding: 10px 0;
+            }
+
+            .close-cart {
+                background: #ef4444;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <div id="open-cart-btn" style="float: left; font-size: 20px; cursor: pointer; background: #e2e8f0; padding: 5px 15px; border-radius: 20px;">
+                🛒 السلة: <span id="cart-count">0</span>
             </div>
-            
-        </section>
+            <div style="clear: both;"></div>
+            <h1>مرحباً بك في متجرنا الرقمي</h1>
+            <p>بوابتك للحصول على الكتب، الأجهزة، وحسابات الألعاب</p>
+        </header>
 
-        <hr>
-
-        <section class="category-section">
-            <h2>📚 كتب وروايات تراثية</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="file:///C:/Users/PC/Desktop/html/book.jpg.jpg" alt="كتاب">
-                    <h3>كتاب تاريخ بغداد القديم</h3>
-                    <p class="price">السعر: 12,000 دينار</p>
-                    <button>إضافة إلى السلة</button>
+        <main>
+            <section class="category-section">
+                <h2>🎮 حسابات ألعاب (تسليم تلقائي)</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <a href="product-clash.html" style="text-decoration: none; color: inherit;">
+                            <img src="./game-account1.png" alt="حساب لعبة">
+                            <h3>حساب بوبجي مشحون سيزونات قديمة</h3>
+                        </a>
+                        <p class="price">السعر: <span class="num-price">25000</span> دينار</p>
+                        <button class="add-to-cart-btn" data-name="حساب بوبجي" data-price="25000">إضافة إلى السلة</button>
+                    </div>
+                    <div class="product-card">
+                        <a href="product-clash.html" style="text-decoration: none; color: inherit;">
+                            <img src="./game-account1.png" alt="حساب لعبة">
+                            <h3>حساب كلاش اوف كلانس لفل عالي</h3>
+                        </a>
+                        <p class="price">السعر: <span class="num-price">18000</span> دينار</p>
+                        <button class="add-to-cart-btn" data-name="حساب كلاش اوف كلانس" data-price="18000">إضافة إلى السلة</button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <hr>
-
-        <section class="category-section">
-            <h2>💻 أجهزة وإلكترونيات</h2>
-            <div class="product-grid">
-                <div class="product-card">
-                    <img src="device.jpg" alt="جهاز إلكتروني">
-                    <h3>يد تحكم ألعاب احترافية للموبايل</h3>
-                    <p class="price">السعر: 35,000 دينار</p>
-                    <button>إضافة إلى السلة</button>
+            <section class="category-section">
+                <h2>📚 كتب وروايات تراثية</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="book.jpg" alt="كتاب">
+                        <h3>كتاب تاريخ بغداد القديم</h3>
+                        <p class="price">السعر: <span class="num-price">12000</span> دينار</p>
+                        <button class="add-to-cart-btn" data-name="كتاب تاريخ بغداد" data-price="12000">إضافة إلى السلة</button>
+                    </div>
                 </div>
+            </section>
+        </main>
+
+        <div id="cartModal" class="cart-modal">
+            <div class="cart-content">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>🛍️ سلة مشترياتك</h2>
+                    <button class="close-cart" id="close-cart-btn">إغلاق X</button>
+                </div>
+                <hr>
+                <div id="cart-items-container">
+                    <p style="color: #64748b; text-align: center;">السلة فارغة حالياً...</p>
+                </div>
+                <hr>
+                <div style="display: flex; justify-content: space-between; font-size: 18px; font-weight: bold; margin-top: 15px;">
+                    <span>المجموع الكلي:</span>
+                    <span><span id="cart-total-price">0</span> دينار</span>
+                </div>
+                <a href="checkout.html" style="text-decoration: none;"><button style="width: 100%; margin-top: 15px; padding: 12px; background: #22c55e;">الانتقال للدفع والشراء 💳</button></a>
             </div>
-        </section>
-    </main>
+        </div>
 
-    <footer>
-        <p>جميع الحقوق محفوظة © 2026</p>
-    </footer>
+        <footer>
+            <p>جميع الحقوق محفوظة © 2026</p>
+        </footer>
 
-    <script src="app.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
+
+
+<footer>
+    <p>جميع الحقوق محفوظة © 2026</p>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>

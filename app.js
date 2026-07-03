@@ -1,29 +1,76 @@
-﻿// 1. نسوي متغير يحسب عدد القطع في السلة ويبدأ من الصفر
-let totalItems = 0;
+﻿// 1. مصفوفة لحفظ المنتجات التي يختارها الزبون
+let cart = [];
 
-// 2. نمسك عنصر العداد الموجود في الهيدر
+// 2. تمسيك عناصر واجهة السلة
 const cartCountElement = document.getElementById('cart-count');
+const cartItemsContainer = document.getElementById('cart-items-container');
+const cartTotalPriceElement = document.getElementById('cart-total-price');
+const cartModal = document.getElementById('cartModal');
 
-// 3. نبحث عن كل أزرار الشراء
-const buyButtons = document.querySelectorAll('.product-card button');
+const openCartBtn = document.getElementById('open-cart-btn');
+const closeCartBtn = document.getElementById('close-cart-btn');
 
-// 4. نشغل التفاعل عند الضغط
-buyButtons.forEach(button => {
+// 3. فتح وإغلاق نافذة السلة عند الضغط عليها
+openCartBtn.addEventListener('click', () => {
+    cartModal.style.display = 'block';
+    renderCart(); // تحديث القائمة المكتوبة داخل السلة
+});
+
+closeCartBtn.addEventListener('click', () => {
+    cartModal.style.display = 'none';
+});
+
+// 4. التقاط أزرار الإضافة للسلة
+const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+addToCartButtons.forEach(button => {
     button.addEventListener('click', () => {
+        // جلب اسم المنتج وسعره من خواص الزر (data attributes)
+        const name = button.getAttribute('data-name');
+        const price = parseInt(button.getAttribute('data-price'));
 
-        // نزيد العداد بمقدار 1 في كل ضغطة
-        totalItems = totalItems + 1;
+        // إضافة المنتج ككائن (Object) داخل مصفوفة السلة
+        cart.push({ name: name, price: price });
 
-        // نحدث الرقم المكتوب في الصفحة بالرقم الجديد
-        cartCountElement.innerText = totalItems;
+        // تحديث الرقم الظاهر في الهيدر
+        cartCountElement.innerText = cart.length;
 
-        // حركة اختيارية: نغير نص الزر مؤقتاً عشان الزبون يعرف إنه انضاف
-        button.innerText = "تم الإضافة! ✓";
-        button.style.backgroundColor = "#10b981"; // يتحول للأخضر
-
+        // حركة حركية للزر ليعرف الزبون أنه تم الإضافة
+        button.innerText = "تمت الإضافة! ✓";
+        button.style.backgroundColor = "#10b981";
         setTimeout(() => {
-            button.innerText = "شراء الآن";
-            button.style.backgroundColor = "#2563eb"; // يرجع للأزرق بعد ثانية
-        }, 1000);
+            button.innerText = "إضافة إلى السلة";
+            button.style.backgroundColor = "#2563eb";
+        }, 800);
     });
 });
+
+// 5. دالة تقوم بطباعة المنتجات المضافة داخل نافذة السلة وحساب المجموع
+function renderCart() {
+    // تنظيف السلة أولاً
+    cartItemsContainer.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p style="color: #64748b; text-align: center;">السلة فارغة حالياً...</p>';
+        cartTotalPriceElement.innerText = '0';
+        return;
+    }
+
+    let total = 0;
+
+    // الدوران حول المنتجات المضافة وطباعتها
+    cart.forEach((item, index) => {
+        total += item.price;
+
+        const itemHTML = `
+            <div class="cart-item">
+                <span>${item.name}</span>
+                <strong>${item.price.toLocaleString()} دينار</strong>
+            </div>
+        `;
+        cartItemsContainer.innerHTML += itemHTML;
+    });
+
+    // تحديث المجموع النهائي في أسفل السلة
+    cartTotalPriceElement.innerText = total.toLocaleString();
+}
