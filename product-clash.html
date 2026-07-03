@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>حساب كلاش اوف كلانس - التفاصيل</title>
+    <style>
+        /* تنسيق خاص لصفحة المنتج */
+        .product-page-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .image-gallery {
+            flex: 1 1 500px;
+        }
+
+        .main-image {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+            .thumb:hover {
+                border-color: #2563eb;
+            }
+
+        .product-details {
+            flex: 1 1 500px;
+        }
+
+            .product-details h1 {
+                font-size: 32px;
+                color: #1e293b;
+            }
+
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+            .details-list li {
+                padding: 10px 0;
+                border-bottom: 1px solid #f1f5f9;
+                color: #475569;
+            }
+
+                .details-list li b {
+                    color: #1e293b;
+                }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 تفاصيل الحساب الرقمي</h1>
+        <p>مراجعة شاملة لبيانات حساب كلاش اوف كلانس</p>
+    </header>
+
+    <main class="product-page-container">
+
+        <div class="image-gallery">
+            <img src="file:///C:/Users/PC/Desktop/html/game-account1.png.png" alt="الصورة الرئيسية" class="main-image">
+            <div class="thumbs">
+                <img src="file:///C:/Users/PC/Desktop/html/game-account1.png.png" alt="صورة 1" class="thumb">
+            </div>
+        </div>
+
+        <div class="product-details">
+            <h1>حساب كلاش اوف كلانس لفل عالي</h1>
+            <p class="price" style="font-size: 24px; margin: 10px 0;">السعر: 18,000 دينار</p>
+
+            <ul class="details-list">
+                <li><b>🏰 لفل القرية الرئيسي:</b> 165</li>
+                <li><b>⭐ لفل قاعة المدينة (Town Hall):</b> 16</li>
+                <li><b>💎 الجواهر المتاحة:</b> 606</li>
+                <li><b> الملك والملكة:</b> لفل 78 / 90</li>
+                <li><b> تسليم تلقائي:</b> نعم، فوري بعد الدفع</li>
+            </ul>
+
+            <div style="margin-top: 30px; display: flex; gap: 15px;">
+                <a href="index.html" class="button" style="text-align: center; text-decoration: none; width: 50%; background-color: #64748b;">الرجوع للمتجر</a>
+                <button style="width: 50%;">شراء الآن</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
