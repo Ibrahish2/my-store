@@ -4,123 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>بوابة الدفع الآمنة</title>
+    <title>إتمام الشراء - رصيد آسيا</title>
     <style>
         .checkout-container {
             max-width: 500px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 25px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: right;
-        }
-
-            .form-group label {
-                display: block;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #334155;
-            }
-
-            .form-group input {
-                width: 100%;
-                padding: 10px;
-                border: 1px solid #cbd5e1;
-                border-radius: 6px;
-                box-sizing: border-box;
-            }
-
-        .success-box {
-            display: none;
-            background: #f0fdf4;
-            border: 2px dashed #22c55e;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .account-info {
-            background: #1e293b;
-            color: #10b981;
+        .payment-method-box {
+            border: 2px solid #e2e8f0;
             padding: 15px;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 18px;
-            text-align: left;
-            direction: ltr;
-            margin-top: 10px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
+
+        .asia-badge {
+            background: #e11d48;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .instructions-list {
+            text-align: right;
+            background: #f8fafc;
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+            transition: background 0.3s;
+        }
+
+            .whatsapp-btn:hover {
+                background: #16a34a;
+            }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>💳 إتمام الدفع الآمن</h1>
-        <p>مبني وفق معايير الحماية العالمية</p>
+    <header style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 30px 20px; text-align: center; border-bottom: 4px solid #e11d48;">
+        <h1>💳 بوابة الدفع الذكية</h1>
+        <p>استلم حسابك فوراً بعد تحويل رصيد آسيا</p>
     </header>
 
     <main class="checkout-container">
-        <div id="payment-form-section">
-            <h3>المبلغ المطلوب: 18,000 دينار</h3>
-            <p style="color: #64748b; font-size: 14px; margin-bottom: 20px;">أدخل معلومات بطاقة الماستركارد لإتمام الشراء تلقائياً</p>
-
-            <form id="fake-pay-form">
-                <div class="form-group">
-                    <label>رقم البطاقة (16 رقم):</label>
-                    <input type="text" placeholder="xxxx xxxx xxxx xxxx" required maxlength="19">
-                </div>
-                <div class="form-group" style="display: flex; gap: 10px;">
-                    <div style="flex: 1;">
-                        <label>تاريخ الانتهاء:</label>
-                        <input type="text" placeholder="MM/YY" required maxlength="5">
-                    </div>
-                    <div style="flex: 1;">
-                        <label>الرمز السري (CVV):</label>
-                        <input type="password" placeholder="xxx" required maxlength="3">
-                    </div>
-                </div>
-                <button type="submit" style="width: 100%; padding: 12px; background: #2563eb; font-size: 16px; margin-top: 10px;">تأكيد الدفع الآمن</button>
-            </form>
+        <div class="payment-method-box">
+            <span style="font-size: 18px; font-weight: bold; color: #1e293b;">طريقة الدفع:</span>
+            <span class="asia-badge">رصيد آسيا سيل (Asiacell)</span>
         </div>
 
-        <!-- صندوق نجاح الدفع وظهور الحساب تلقائياً -->
-        <div id="success-section" class="success-box">
-            <h3 style="color: #16a34a; margin-0;">✓ تم الدفع بنجاح!</h3>
-            <p style="color: #475569; font-size: 14px;">شكراً لثقتك بنا. إليك بيانات حسابك الرقمي فوراً:</p>
-
-            <div class="account-info">
-                <strong>Email:</strong> clash-king99@gmail.com<br>
-                <strong>Password:</strong> CoC#2026#Pass
-            </div>
-
-            <p style="color: #ef4444; font-size: 12px; margin-top: 10px;">⚠️ يرجى تصوير الشاشة وحفظ البيانات فوراً وتغييرها عند تسجيل الدخول.</p>
-            <a href="index.html" class="button" style="display: inline-block; text-decoration: none; margin-top: 15px; background: #64748b; padding: 8px 15px; font-size: 14px;">العودة للمتجر</a>
+        <div style="text-align: right; margin-bottom: 20px;">
+            <h3 style="margin: 0; color: #0f172a;">المنتج: حساب كلاش اوف كلانس لفل عالي</h3>
+            <h2 style="margin: 5px 0; color: #e11d48;">المبلغ المطلوب: 18,000 دينار رصيد</h2>
         </div>
+
+        <div class="instructions-list">
+            <h4 style="margin-top: 0; color: #0f172a; font-size: 16px;">💡 خطوات إتمام الشراء:</h4>
+            1. اضغط على زر "إرسال الرصيد عبر الواتساب" بالأسفل.<br>
+            2. ستفتح لك محادثة مباشرة مع الدعم الفني للمتجر.<br>
+            3. أرسل رسالة الطلب الجاهزة، وقم بإرفاق (رقم كارت الآسيا) أو (تحويل رصيد مباشر).<br>
+            4. سيقوم الدعم بالتحقق وتسليمك الرمز والإيميل فوراً.
+        </div>
+
+        <a href="https://wa.me/9647771994210?text=مرحباً%20GameFlix،%20أريد%20شراء%20حساب%20كلاش%20اوف%20كلانس%20بقيمة%2018000%20دينار%20رصيد%20آسيا.%20يرجى%20تأكيد%20الطلب%20لتسليم%20الكارت."
+           class="whatsapp-btn" target="_blank">
+            💬 إرسال الرصيد عبر الواتساب
+        </a>
+
+        <a href="index.html" style="display: inline-block; margin-top: 20px; color: #64748b; text-decoration: none; font-size: 14px;">العودة وتعديل الطلب</a>
     </main>
 
-    <script>
-        // كود جافا سكريبت بسيط لمحاكاة عملية الدفع والتسليم الفوري
-        document.getElementById('fake-pay-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // منع إعادة تحميل الصفحة
-
-            // محاكاة معالجة الدفع لمدة ثانية ونصف
-            const btn = e.target.querySelector('button');
-            btn.innerText = "جاري التحقق من البطاقة...";
-            btn.disabled = true;
-
-            setTimeout(() => {
-                // إخفاء الفرم وإظهار الحساب
-                document.getElementById('payment-form-section').style.display = 'none';
-                document.getElementById('success-section').style.display = 'block';
-            }, 1500);
-        });
-    </script>
+    <footer style="text-align: center; padding: 20px; color: #94a3b8; font-size: 14px;">
+        جميع الحقوق محفوظة لمتجر GameFlix © 2026
+    </footer>
 
 </body>
 </html>
