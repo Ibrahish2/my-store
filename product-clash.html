@@ -84,10 +84,30 @@
 
     <main class="product-page-container">
 
-        <div class="image-gallery">
-            <img src="clash.png.png" alt="الصورة الرئيسية" class="main-image">
-            <div class="thumbs">
-                <img src="clash.png.png" alt="صورة 1" class="thumb">
+        <!-- قسم معرض الصور المطور لحساب كلاش - تم تصحيحه لجعل الصور قابلة للضغط -->
+        <div class="image-gallery" style="text-align: center;">
+
+            <!-- الصورة الكبيرة الرئيسية المرفوعة على جهازك - أضفنا لها ID فريد -->
+            <img src="clash.png.png" alt="الصورة الرئيسية للقرية" class="main-image" id="current-main-img" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s ease;">
+
+            <!-- الصور المصغرة الإضافية بالأسفل - أضفنا لها تنسيق الـ Cursor -->
+            <div class="thumbs" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
+
+                <!-- الصورة المصغرة الأولى (النشطة افتراضياً) - أضفنا cursor: pointer -->
+                <img src="clash.png.png" alt="صورة القرية" class="thumb active-thumb"
+                     onclick="changeImage('clash.png.png')"
+                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid #2563eb; transition: all 0.2s ease;">
+
+                <!-- الصورة المصغرة الثانية -->
+                <img src="army.png" alt="صورة الجنود" class="thumb"
+                     onclick="changeImage('army.png')"
+                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease;">
+
+                <!-- الصورة المصغرة الثالثة -->
+                <img src="hero.png" alt="صورة الابطال" class="thumb"
+                     onclick="changeImage('hero.png')"
+                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s ease;">
+
             </div>
         </div>
 
@@ -110,5 +130,33 @@
     </main>
 
     <script src="app.js"></script>
+    <script>
+        // دالة لتغيير الصورة الرئيسية عند الضغط على الصور المصغرة
+        function changeImage(imageSrc) {
+            // 1. تغيير مصدر الصورة الرئيسية الكبيرة
+            const mainImg = document.getElementById('current-main-img');
+            mainImg.style.opacity = '0.7'; // تأثير انتقال بسيط
+
+            // انتظر قليلاً ثم غير الصورة وأعد الشفافية
+            setTimeout(() => {
+                mainImg.src = imageSrc;
+                mainImg.style.opacity = '1';
+            }, 150);
+
+            // 2. تحديث الإطارات الزرقاء على الصور المصغرة
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(thumb => {
+                // قارن مصدر الصورة المصغرة مع مصدر الصورة الجديدة
+                // ملاحظة: قد تحتاج لمقارنة الاسم المباشر إذا لم تنجح المقارنة الكاملة
+                if (thumb.getAttribute('src') === imageSrc) {
+                    thumb.style.borderColor = '#2563eb'; // إطار أزرق للصورة النشطة
+                    thumb.classList.add('active-thumb');
+                } else {
+                    thumb.style.borderColor = 'transparent'; // إزالة الإطار
+                    thumb.classList.remove('active-thumb');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
