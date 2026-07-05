@@ -69,31 +69,32 @@
     <script src="app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. قراءة الـ id من رابط الصفحة (مثال: product.html?id=1)
+            // 1. قراءة الـ id من رابط الصفحة
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('id'));
 
-            // 2. البحث عن الحساب المطابق داخل مصفوفة products الموجودة في app.js
+            // 2. البحث عن الحساب المطابق في app.js
             const product = products.find(p => p.id === productId);
 
             if (product) {
-                // 3. ملء بيانات الصفحة تلقائياً بالمعلومات الصحيحة
+                // 3. ملء البيانات
                 document.getElementById('product-title').innerText = product.title;
                 document.getElementById('product-price').innerText = product.price.toLocaleString();
-                // تحديث رابط زر شراء الآن ليأخذ رقم الحساب معه
-                document.getElementById('buy-now-btn').href = `checkout.html?id=${product.id}`;
 
                 const mainImg = document.getElementById('main-product-img');
                 mainImg.src = product.mainImg;
 
-                // 4. بناء معرض الصور المصغرة تلقائياً
+                // تحديث رابط زر شراء الآن ليأخذ رقم الحساب معه
+                document.getElementById('buy-now-btn').href = `checkout.html?id=${product.id}`;
+
+                // 4. بناء معرض الصور المصغرة
                 const thumbsContainer = document.getElementById('thumbs-container');
                 thumbsContainer.innerHTML = '';
                 product.images.forEach((imgSrc, index) => {
                     const img = document.createElement('img');
                     img.src = imgSrc;
                     img.classList.add('thumb');
-                    if(index === 0) img.style.borderColor = '#2563eb';
+                    if (index === 0) img.style.borderColor = '#2563eb';
 
                     img.onclick = () => {
                         mainImg.src = imgSrc;
@@ -103,7 +104,7 @@
                     thumbsContainer.appendChild(img);
                 });
 
-                // 5. بناء قائمة التفاصيل تلقائياً
+                // 5. بناء قائمة التفاصيل
                 const detailsList = document.getElementById('product-details-list');
                 detailsList.innerHTML = '';
                 product.details.forEach(detail => {
