@@ -2,7 +2,7 @@
 const products = [
     {
         id: 1,
-        title: "حساب كلاش اوف كلانس لفل 125",
+        title: "حساب كلاش اوف كلانس لفل 165",
         price: 18000,
         mainImg: "clash.png.png",
         images: ["clash.png.png", "army.png", "hero.png"],
@@ -12,5 +12,12 @@ const products = [
             "💎 الجواهر المتاحة: 600",
             "⚡ تسليم تلقائي: نعم، فوري بعد الدفع"
         ]
+    },
+    {
+        id: 2,
+        title: "حساب كلاش اوف كلانس لفل 114",
+        price: 12000,
+        mainImg: "clash2.png",
+        images: ["clash2.png", "army2.png","hero2.png"],
     }
 ];
