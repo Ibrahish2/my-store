@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - GameFlix</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .product-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .thumb {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .details-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: right;
+        }
+
+            .details-list li {
+                padding: 10px;
+                border-bottom: 1px solid #f1f5f9;
+                font-size: 16px;
+                color: #334155;
+            }
+    </style>
+</head>
+<body>
+
+    <header style="background: linear-gradient(135deg, #0f172a, #1e293b); color: white; padding: 25px; text-align: center; border-bottom: 4px solid #2563eb;">
+        <h1 id="page-brand" style="font-size: 36px; margin: 0;">🎮 <span style="color: #2563eb;">Game</span>Flix</h1>
+        <p style="color: #94a3b8; margin: 5px 0 0 0;">تفاصيل الحساب والمعاينة الكاملة</p>
+    </header>
+
+    <main class="product-container">
+        <h2 id="product-title" style="text-align: right; color: #0f172a; margin-bottom: 20px;">جاري التحميل...</h2>
+
+        <div class="image-gallery" style="text-align: center;">
+            <img src="" alt="المعاينة الرئيسية" id="main-product-img" style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <div id="thumbs-container" style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;"></div>
+        </div>
+
+        <div style="text-align: right; margin-top: 25px;">
+            <h3 style="color: #e11d48; font-size: 24px; margin: 0;">السعر: <span id="product-price">0</span> دينار</h3>
+            <ul class="details-list" id="product-details-list"></ul>
+        </div>
+
+        <div style="margin-top: 30px; display: flex; gap: 15px;">
+            <a href="index.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #64748b; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold;">الرجوع للمتجر</a>
+            <a href="checkout.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #2563eb; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold;">شراء الآن</a>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. قراءة الـ id من رابط الصفحة (مثال: product.html?id=1)
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            // 2. البحث عن الحساب المطابق داخل مصفوفة products الموجودة في app.js
+            const product = products.find(p => p.id === productId);
+
+            if (product) {
+                // 3. ملء بيانات الصفحة تلقائياً بالمعلومات الصحيحة
+                document.getElementById('product-title').innerText = product.title;
+                document.getElementById('product-price').innerText = product.price.toLocaleString();
+
+                const mainImg = document.getElementById('main-product-img');
+                mainImg.src = product.mainImg;
+
+                // 4. بناء معرض الصور المصغرة تلقائياً
+                const thumbsContainer = document.getElementById('thumbs-container');
+                thumbsContainer.innerHTML = '';
+                product.images.forEach((imgSrc, index) => {
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.classList.add('thumb');
+                    if(index === 0) img.style.borderColor = '#2563eb';
+
+                    img.onclick = () => {
+                        mainImg.src = imgSrc;
+                        document.querySelectorAll('.thumb').forEach(t => t.style.borderColor = 'transparent');
+                        img.style.borderColor = '#2563eb';
+                    };
+                    thumbsContainer.appendChild(img);
+                });
+
+                // 5. بناء قائمة التفاصيل تلقائياً
+                const detailsList = document.getElementById('product-details-list');
+                detailsList.innerHTML = '';
+                product.details.forEach(detail => {
+                    const li = document.createElement('li');
+                    li.innerHTML = detail;
+                    detailsList.appendChild(li);
+                });
+            } else {
+                document.getElementById('product-title').innerText = "المنتج غير موجود!";
+            }
+        });
+    </script>
+</body>
+</html>
