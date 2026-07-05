@@ -14,18 +14,3 @@ const products = [
         ]
     }
 ];
-
-// 2. كود إدارة السلة (شغال تمام وبدون أي تغيير)
-let cart = JSON.parse(localStorage.getItem('gameflix_cart')) || [];
-
-function updateCartCount() {
-    const countSpan = document.getElementById('cart-count');
-    if (countSpan) {
-        countSpan.innerText = cart.length;
-    }
-}
-
-// تحديث العداد عند تحميل الصفحة فوراً
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
-});

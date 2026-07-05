@@ -61,8 +61,8 @@
         </div>
 
         <div style="margin-top: 30px; display: flex; gap: 15px;">
-            <a href="index.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #64748b; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold;">الرجوع للمتجر</a>
-            <a href="checkout.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #2563eb; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold;">شراء الآن</a>
+            <a href="index.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #64748b; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold; transition: background 0.2s;">الرجوع للمتجر</a>
+            <a id="buy-now-btn" href="checkout.html" style="text-align: center; text-decoration: none; width: 50%; background-color: #2563eb; color: white; padding: 12px 0; border-radius: 6px; font-weight: bold; transition: background 0.2s;">شراء الآن</a>
         </div>
     </main>
 
@@ -80,6 +80,8 @@
                 // 3. ملء بيانات الصفحة تلقائياً بالمعلومات الصحيحة
                 document.getElementById('product-title').innerText = product.title;
                 document.getElementById('product-price').innerText = product.price.toLocaleString();
+                // تحديث رابط زر شراء الآن ليأخذ رقم الحساب معه
+                document.getElementById('buy-now-btn').href = `checkout.html?id=${product.id}`;
 
                 const mainImg = document.getElementById('main-product-img');
                 mainImg.src = product.mainImg;
