@@ -3,7 +3,7 @@ const products = [
     {
         id: 1,
         title: "حساب كلاش اوف كلانس لفل 165",
-        price: 18000,
+        price: 25000,
         mainImg: "clash.png.png",
         images: ["clash.png.png", "army.png", "hero.png"],
         details: [
